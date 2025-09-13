@@ -1,0 +1,270 @@
+/* 댄싱 캣 컨테이너 */
+.dancing-cat-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px;
+}
+
+.cat-wrapper {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.cat-wrapper:hover {
+  transform: scale(1.05);
+}
+
+.cat-image {
+  width: 200px;
+  height: 200px;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+  transition: filter 0.3s ease;
+}
+
+/* 댄싱 애니메이션 */
+.cat-wrapper.dancing .cat-image {
+  animation: 
+    dance-bounce 0.6s ease-in-out infinite alternate,
+    dance-wiggle 0.8s ease-in-out infinite,
+    dance-rotate 2s linear infinite;
+}
+
+@keyframes dance-bounce {
+  0% { 
+    transform: translateY(0px) scale(1); 
+  }
+  100% { 
+    transform: translateY(-20px) scale(1.1); 
+  }
+}
+
+@keyframes dance-wiggle {
+  0%, 100% { 
+    transform: translateX(0px) rotate(0deg); 
+  }
+  25% { 
+    transform: translateX(-10px) rotate(-5deg); 
+  }
+  75% { 
+    transform: translateX(10px) rotate(5deg); 
+  }
+}
+
+@keyframes dance-rotate {
+  0% { 
+    transform: rotate(0deg); 
+  }
+  25% { 
+    transform: rotate(5deg); 
+  }
+  50% { 
+    transform: rotate(0deg); 
+  }
+  75% { 
+    transform: rotate(-5deg); 
+  }
+  100% { 
+    transform: rotate(0deg); 
+  }
+}
+
+/* 버튼 스타일 */
+.dance-button {
+  background: linear-gradient(135deg, #ff6b6b, #ffa500);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+  text-transform: none;
+}
+
+.dance-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+  background: linear-gradient(135deg, #ff5252, #ff8f00);
+}
+
+.dance-button:active {
+  transform: translateY(0px);
+  box-shadow: 0 2px 10px rgba(255, 107, 107, 0.4);
+}
+
+/* 설명 텍스트 */
+.instruction {
+  color: white;
+  font-size: 1.1rem;
+  text-align: center;
+  opacity: 0.9;
+  margin-top: 10px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+/* 애니메이션 효과 추가 */
+.cat-wrapper.dancing {
+  animation: container-pulse 2s ease-in-out infinite;
+}
+
+@keyframes container-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(255, 165, 0, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(255, 165, 0, 0.8));
+  }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .dancing-cat-container {
+    padding: 20px;
+    gap: 15px;
+  }
+  
+  .cat-image {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .dance-button {
+    padding: 12px 24px;
+    font-size: 1rem;
+  }
+  
+  .instruction {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dancing-cat-container {
+    padding: 15px;
+    gap: 10px;
+  }
+  
+  .cat-image {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .dance-button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  
+  .instruction {
+    font-size: 0.9rem;
+  }
+  
+  @keyframes dance-bounce {
+    0% { 
+      transform: translateY(0px) scale(1); 
+    }
+    100% { 
+      transform: translateY(-15px) scale(1.05); 
+    }
+  }
+}
+
+/* 터치 인터페이스 지원 */
+@media (hover: none) and (pointer: coarse) {
+  .cat-wrapper:hover {
+    transform: none;
+  }
+  
+  .cat-wrapper:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+  }
+  
+  .dance-button:hover {
+    transform: none;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+  }
+  
+  .dance-button:active {
+    transform: scale(0.95);
+  }
+}
+
+/* 애니메이션 컨트롤 스타일 */
+.animation-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.speed-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  font-weight: bold;
+}
+
+.speed-select {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.speed-select:hover {
+  background: white;
+  transform: translateY(-1px);
+}
+
+.speed-select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 165, 0, 0.5);
+}
+
+.keyboard-hint {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 10px 15px;
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+}
+
+.keyboard-hint p {
+  margin: 0;
+}
+
+/* 반응형 컨트롤 */
+@media (max-width: 480px) {
+  .animation-controls {
+    gap: 10px;
+    margin: 15px 0;
+  }
+  
+  .speed-controls {
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .speed-select {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+  }
+  
+  .keyboard-hint {
+    font-size: 0.8rem;
+    padding: 8px 12px;
+  }
+}
